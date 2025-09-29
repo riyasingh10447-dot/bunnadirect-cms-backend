@@ -1,0 +1,34 @@
+datasource db {
+  provider = "mysql"
+   url      = env("DATABASE_URL")
+}
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Article {
+  id             Int       @id @default(autoincrement())
+  title          String
+  slug           String    @unique
+  metaKeyword    String?
+  metaDescription String?
+  body           String
+  imageUrl       String?
+  category       Category
+  contentType    ContentType
+  createdAt      DateTime  @default(now())
+}
+
+enum Category {
+  TRENDS_FASHION
+  TYPES_JEWELLERY
+  OCCASIONS_EVENTS
+  BUYING_GUIDES_REVIEWS
+  HISTORY_CULTURE
+  CARE_MAINTENANCE
+}
+
+enum ContentType {
+  ARTICLE
+  NEWS
+}
