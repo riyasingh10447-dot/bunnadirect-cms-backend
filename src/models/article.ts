@@ -1,4 +1,4 @@
-export interface Article {
+{/*export interface Article {
   id: number;
   title: string;
   body: string;
@@ -7,3 +7,4 @@ export interface Article {
 }
 
 export const articles: Article[] = [];  // temporary storage
+*/}

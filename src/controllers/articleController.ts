@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+{/*import { Request, Response } from "express";
 import { articles, Article } from "../models/article";
 import { slugify } from "../utils/slugify";
 
@@ -40,3 +40,4 @@ export const getArticleBySlug = (req: Request, res: Response) => {
 
   res.json(article);
 };
+*/}

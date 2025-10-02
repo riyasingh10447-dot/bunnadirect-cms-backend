@@ -1,11 +1,24 @@
 import express from "express";
 import articleRouter from "./routes/article";
-
+import cookieParser from "cookie-parser";
+import authRoutes from "./routes/auth"; // adjust path if different
+import userRoutes from "./routes/user";
+import cors from "cors";
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
+// Enable CORS
+app.use(cors({
+ origin: ["http://localhost:3000", "http://localhost:3001"],
+  credentials: true
+}));
 app.use("/article", articleRouter);
 
+
+// Auth routes
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 {/*---og
