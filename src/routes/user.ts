@@ -38,6 +38,15 @@ router.post("/", authenticateJWT, authorizeRoles("admin"), async (req: Request, 
   const { email, password, role } = req.body;
 
   try {
+    // 🔍 Check if user already exists
+    const existingUser = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
     const password_hash = await bcrypt.hash(password, 10);
 
     const user = await prisma.user.create({
@@ -54,6 +63,27 @@ router.post("/", authenticateJWT, authorizeRoles("admin"), async (req: Request, 
   }
 });
 
+{/*--og
+router.post("/", authenticateJWT, authorizeRoles("admin"), async (req: Request, res: Response) => {
+  const { email, password, role } = req.body;
+
+  try {
+    const password_hash = await bcrypt.hash(password, 10);
+
+    const user = await prisma.user.create({
+      data: { email, password_hash, role },
+    });
+
+    // Send email with credentials
+    await sendCredentials(email, password);
+
+    res.status(201).json({ message: "User created successfully", user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+*/}
 router.get("/", authenticateJWT, authorizeRoles("admin"), async (_req: Request, res: Response) => {
   try {
     const users = await prisma.user.findMany({

@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth"; // adjust path if different
 import userRoutes from "./routes/user";
 import cors from "cors";
+import uploadRouter from "./routes/upload";
+import path from "path";
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
@@ -17,6 +19,10 @@ app.use("/article", articleRouter);
 
 
 // Auth routes
+app.use("/upload", uploadRouter);
+
+// Serve uploaded files statically
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 const PORT = 5000;
