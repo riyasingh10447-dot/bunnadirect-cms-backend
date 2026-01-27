@@ -7,31 +7,34 @@ generator client {
 }
 
 model Article {
-  id             Int       @id @default(autoincrement())
-  title          String
-  slug           String    @unique
-  metaKeyword    String?
-  metaDescription String?
-  body      String   @db.LongText
-  imageUrl       String?
-  category       Category
-  contentType    ContentType
-  createdAt      DateTime  @default(now())
+  id              Int      @id @default(autoincrement())
+  title           String
+  slug            String   @unique
+  
+  metaKeyword     String?  @db.Text
+  metaDescription String?  @db.Text
+  body            String   @db.LongText
+  imageUrl        String?
+  category        Category
+  contentType     ContentType
+  createdAt       DateTime @default(now())
 }
 
+
 enum Category {
-  TRENDS_FASHION
-  TYPES_JEWELLERY
-  OCCASIONS_EVENTS
-  BUYING_GUIDES_REVIEWS
-  HISTORY_CULTURE
-  CARE_MAINTENANCE
+  GREEN_COFFEE_BENEFITS
+  TYPES_OF_GREEN_COFFEE_BEANS
+  HOW_TO_USE_GREEN_COFFEE
+  GREEN_COFFEE_WEIGHT_LOSS
+  GREEN_COFFEE_HEALTH
+  GREEN_COFFEE_STORAGE_CARE
 }
 
 enum ContentType {
   ARTICLE
   NEWS
 }
+
 
 model User {
   id            Int      @id @default(autoincrement())
