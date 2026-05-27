@@ -5,11 +5,11 @@ const prisma = new PrismaClient();
 
 async function main() {
   // Password को bcrypt से hash करो
-  const hashedPassword = await bcrypt.hash("temporaryPasswordye", 10);
+  const hashedPassword = await bcrypt.hash("Isz@14567", 10);
 
   // Check करो कि user पहले से exist करता है या नहीं
   const existingUser = await prisma.user.findUnique({
-    where: { email: "admin@johriworks.com" },
+    where: { email: "admin@dreamladder.com" },
   });
 
   if (existingUser) {
@@ -21,7 +21,7 @@ async function main() {
   const adminUser = await prisma.user.create({
     data: {
       name: "Admin",
-      email: "admin@johriworks.com",
+      email: "admin@dreamladder.com",
       password: hashedPassword,
     },
   });

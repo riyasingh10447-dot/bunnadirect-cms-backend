@@ -1,0 +1,8 @@
+/*
+  Warnings:
+
+  - The values [GREEN_COFFEE_BENEFITS,TYPES_OF_GREEN_COFFEE_BEANS,HOW_TO_USE_GREEN_COFFEE,GREEN_COFFEE_WEIGHT_LOSS,GREEN_COFFEE_HEALTH,GREEN_COFFEE_STORAGE_CARE] on the enum `Article_category` will be removed. If these variants are still used in the database, this will fail.
+
+*/
+-- AlterTable
+ALTER TABLE `article` MODIFY `category` ENUM('TRENDS_FASHION', 'TYPES_JEWELLERY', 'OCCASIONS_EVENTS', 'BUYING_GUIDES_REVIEWS', 'HISTORY_CULTURE', 'CARE_MAINTENANCE') NOT NULL;
